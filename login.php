@@ -1,18 +1,29 @@
 <?php
-$ftp_server="webhome.cc.iitk.ac.in";
-$username = $_POST["username"];
-$password = $_POST["password"];
-//set up basic connection
-$conn_id = ftp_connect($ftp_server);
-// login with username and password
-$login_result = ftp_login($conn_id, $username, $password);
-ftp_close($conn_id);
-if($login_result){
-  echo "Yay!";
-  }
-  else{
-    echo "Nay";
+//echo $_POST['username'];
+$servername = "localhost";
+$username = "root";
+$password = "l;'";
+$dbname="SSF";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+$query = sprintf("select password from Users where username = '%s'", $_POST[username]);
+echo $query;
+$result = mysqli_query($conn, $query) or die("Selection Query Failed!");
+if(mysqli_num_rows($result)==0) {
+    echo "Username does not exist in database!";
+        //header('Location: ./index.html');
+} else {
+    $row = mysqli_fetch_array($result, MYSQLI_BOTH);
+    if (password_verify($_POST['password'], $row['password'])) {
+        session_start();
+        $_SESSION["username"] = $_POST['name'];
+        $_SESSION["id"] = session_id();
+        //header('Location: ./homepage.html');
+    } else {
+        echo "Username and password do not match";
+        //header('Location: ./index.html');
     }
-    ?>
-  }
 }
+?>
