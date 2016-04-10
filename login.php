@@ -8,7 +8,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
-$query = sprintf("select password from Users where username = '%s'", $_POST[username]);
+$query = sprintf("select Password from Users where Username = '%s'", $_POST[username]);
 echo $query;
 $result = mysqli_query($conn, $query) or die("Selection Query Failed!");
 if(mysqli_num_rows($result)==0) {
@@ -16,7 +16,7 @@ if(mysqli_num_rows($result)==0) {
         //header('Location: ./index.html');
 } else {
     $row = mysqli_fetch_array($result, MYSQLI_BOTH);
-    if (password_verify($_POST['password'], $row['password'])) {
+    if (password_verify($_POST['password'], $row['Password'])) {
         session_start();
         $_SESSION["username"] = $_POST['name'];
         $_SESSION["id"] = session_id();

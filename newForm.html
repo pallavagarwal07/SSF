@@ -14,64 +14,29 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
 
-    <body>
-        <div id="container">
-            <h1>Senator Seed Fund</h1>
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label class="control-label col-lg-2" for="name">Name:</label>
-                    <div class="col-lg-9">
-                        <input type="TEXT" class="form-control" id="name" placeholder="Enter your name">
-                    </div>
-                </div>
+    <!--<body>-->
+        <div id="body" class="col-lg-8">
+            <!--<h1>Senator Seed Fund</h1>-->
+            <form method="post" class="form-group">
 
-                <div class="form-group">
-                    <label class="control-label col-lg-2" for="roll">Roll Number:</label>
-                    <div class="col-lg-9">
-                        <input type="Number" class="form-control" id="roll" placeholder="Enter your roll number">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-lg-2" for="phone">Phone Number:</label>
-                    <div class="col-lg-9">
-                        <input type="tel" class="form-control" id="phone" placeholder="Enter your number">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-lg-2" for="email">Email ID:</label>
-                    <div class="col-lg-9">
-                        <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-lg-2" for="event">Event Details:</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control" id="event" placeholder="Enter link for the event details document">
-                    </div>
-                </div>
-
-                <div class="col-lg-offset-2 col-lg-9">
-                    <div class="form-group">
-                        <label for="sel1">Council:</label>
-                        <select class="form-control" id="council">
-                            <option>Cultural Council</option>
-                            <option>Games and Sports Council</option>
-                            <option>Presidential Council</option>
-                            <option>Films and Media Council</option>
-                            <option>Science and Technology Council</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group"> 
-                    <div class="col-lg-offset-2 col-lg-9">
-                        <button type="submit" class="btn btn-default" formaction="saveForm.php">Save</button>
-                        <button type="submit" class="btn btn-default" formaction="submitForm.php">Submit</button>
-                    </div>
-                </div>
+                Name:<input type="TEXT" class="form-control" name="name" placeholder="Enter your name">
+                Roll Number:<input type="Number" class="form-control" name="roll" placeholder="Enter your roll number">
+                Phone Number:<input type="tel" class="form-control" name="phone" placeholder="Enter your number">
+                Email ID:<input type="email" class="form-control" name="email" placeholder="Enter your email">
+                Event Details:<input type="url" class="form-control" name="event" placeholder="Enter link for the event details document">
+                Taget Amount (in Rs.):<input type="number" step="any" class="form-control" name="amount" placeholder="Enter the target amount">
+                Expiry Date:<input type="date" class="form-control" name="expiry" placeholder="Enter date of expiry" data-date-format="mm/dd/yyyy">
+                Council:
+                <select class="form-control" name="council">
+                    <option value="Cultural">Cultural Council</option>
+                    <option value="GnS">Games and Sports Council</option>
+                    <option value="Presidential">Presidential Council</option>
+                    <option value="FMC">Films and Media Council</option>
+                    <option value="SnT">Science and Technology Council</option>
+                </select>
+                <button type="submit" class="btn btn-default" formaction="saveForm.php">Save</button>
+                <button type="submit" class="btn btn-default" formaction="submitForm.php">Submit</button>
             </form>
         </div>
-    </body>
+    <!--</body>-->
 </html>

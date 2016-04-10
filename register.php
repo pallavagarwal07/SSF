@@ -10,7 +10,7 @@ if ($conn->connect_error) {
 }
 echo "established";
 
-$query = sprintf("insert into Users (username, password) values ('%s', '%s')", $_POST['username'], password_hash($_POST['password'], PASSWORD_BCRYPT));
+$query = sprintf("insert into Users (Username, Password) values ('%s', '%s')", $_POST['username'], password_hash($_POST['password'], PASSWORD_BCRYPT));
 echo $query;
 if (mysqli_query($conn, $query) == TRUE) {
     echo "New record created successfully";
