@@ -15,7 +15,7 @@ echo $query;
 if (mysqli_query($conn, $query) == TRUE) {
     echo "New record created successfully";
         session_start();
-        $_SESSION["username"] = $_POST['name'];
+        $_SESSION["username"] = $_POST["username"];
         $_SESSION["id"] = session_id();
         //header('Location: ./homepage.html');
 } else {

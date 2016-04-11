@@ -1,4 +1,5 @@
 <?php
+include "./redirect.php";
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";
@@ -10,7 +11,7 @@ if ($conn->connect_error) {
 //echo "abc";
 //echo date('Y-m-d');
 
-$query = sprintf("insert into Forms (Name, RollNumber, Email, Phone, Event, Council, CreationDate, ExpiryDate, TargetAmount, ApprovalState, Remark) values ('%s', %d, '%s', '%s', '%s', '%s', CURDATE(), CAST('%s' AS DATE), %f, %d, '%s')", $_POST['name'], $_POST['roll'], $_POST['email'], $_POST['phone'], $_POST['event'], $_POST['council'], $_POST['expiry'], $_POST['amount'], 1, NULL);
+$query = sprintf("insert into Forms (Name, Username, RollNumber, Email, Phone, Event, Council, CreationDate, ExpiryDate, TargetAmount, ApprovalState, Remark) values ('%s', '%s', %d, '%s', '%s', '%s', '%s', CURDATE(), CAST('%s' AS DATE), %f, %d, '%s')", $_POST['name'], $_SESSION["username"], $_POST['roll'], $_POST['email'], $_POST['phone'], $_POST['event'], $_POST['council'], $_POST['expiry'], $_POST['amount'], 1, NULL);
 echo $query;
 if (mysqli_query($conn, $query) == TRUE) {
     echo "New Form created successfully";
