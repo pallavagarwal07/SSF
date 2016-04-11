@@ -1,5 +1,11 @@
 <?php
-include "./redirect.php";
+include "../../redirect.php";
+if($_SESSION["username"]!="chair_ss") {
+    echo "<script>
+        alert('You do not have access rights!');
+    window.location.href='../../logout.php';
+</script>";
+}
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";
@@ -13,12 +19,12 @@ $query = sprintf("insert into Funds Values ('%s', %f)", $_POST["name"], $_POST["
 if (mysqli_query($conn, $query) == TRUE) {
     echo "<script>
         alert('Post Inserted');
-    window.location.href='addPost.php';
+    window.location.href='../../../views/usergroups/chair_ss/newPost.php';
 </script>";
 } else {
     echo "<script>
         alert('Unable to insert Post. Please Check!');
-    window.location.href='addPost.php';
+    window.location.href='../../../views/usergroups/chair_ss/newPost.php';
 </script>";
 }
 mysqli_close($conn);

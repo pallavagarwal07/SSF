@@ -1,5 +1,4 @@
-<?php
-echo '<html>
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +12,10 @@ SSF
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
-
 <body>
 <div class="container-fluid">
-';
-include "./redirect.php";
+<?php
+include "../controllers/redirect.php";
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";
@@ -61,7 +59,7 @@ while ($row=mysqli_fetch_row($result))
     echo "</td>";
     echo "<td>";
     echo '<form method="post" class="form-group">';
-    echo '<button type="submit" value="' . $row[0] . '" name="PostID" class="btn btn-default" formaction="deletePost.php">Delete</button>';
+    echo '<button type="submit" value="' . $row[0] . '" name="PostID" class="btn btn-default" formaction="../controllers/usergroups/chair_ss/deletePost.php">Delete</button>';
     echo "</form>";
     echo "</td>";
     echo "</tr>";

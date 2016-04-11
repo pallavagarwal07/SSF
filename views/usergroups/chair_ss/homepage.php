@@ -1,10 +1,9 @@
 <?php
-//echo "abcd";
-include './redirect.php';
+include '../../../controllers/redirect.php';
 if($_SESSION["username"]!="chair_ss") {
     echo "<script>
         alert('You do not have access rights!');
-    window.location.href='logout.php';
+    window.location.href='../../../controllers/logout.php';
 </script>";
 }
 ?>
@@ -19,21 +18,20 @@ if($_SESSION["username"]!="chair_ss") {
             SSF
         </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/homepage.css">
+        <link rel="stylesheet" href="../../../css/homepage.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
 
     <body>
+        Hi
+<?php
+echo $_SESSION["username"];
+?>
+        <form method="post" class="form-group">
+            <button type="submit" class="btn btn-default" formaction="../../../controllers/logout.php">Logout</button>
+        </form>
         <div class="container-fluid">
-            <div id="main" class="col-lg-8">
-                <form method="post" class="form-group">
-
-                    Name:<input type="TEXT" class="form-control" name="name" placeholder="Enter the Post">
-                    Funds:<input type="Number" step="any" class="form-control" name="funds" placeholder="Enter the funds for this post">
-                    <button type="submit" class="btn btn-default" formaction="./insertPost.php">Add Post</button>
-                </form>
-            </div>
         </div>
     </body>
 </html>
