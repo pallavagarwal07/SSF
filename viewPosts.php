@@ -26,45 +26,42 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-//echo "abc";
 
-$query = sprintf("select FormID as 'Form ID', Council, Event, CreationDate as 'Date of Creation', ExpiryDate as 'Date of Expiry', TargetAmount as 'Target Amount (in Rs.)', S.State as 'Status', Remark as 'Remarks', ApprovalState as 'StatusID' from Forms inner join  StatesOfApproval S ON S.ID = Forms.ApprovalState where Username = '%s'", $_SESSION["username"]);
-//echo $query;
+$query = "select Post, TotalMoney as 'Available Funds' from Funds";
 
 $result = mysqli_query($conn, $query);
-//echo $result;
 echo "<table class='table table-striped' width='100%'>";
 echo "<thead>";
-//echo mysqli_num_fields($result);
 while($field=mysqli_fetch_field($result))
 {
-    if($field->name!="StatusID"){
         echo "<td class='heading'><b>";
         echo $field->name;
         echo "</b></td>";
-    }
 }
 echo "<td class='heading'><b>";
 echo "Edit";
+echo "</b></td>";
+echo "<td class='heading'><b>";
+echo "Delete";
 echo "</b></td>";
 echo "</thead>";
 echo "<tbody>";
 while ($row=mysqli_fetch_row($result))
 {
     echo "<tr>";
-    for($i=0; $i < mysqli_num_fields($result)-1; $i++) {
+    for($i=0; $i < mysqli_num_fields($result); $i++) {
         echo "<td>";
         echo $row[$i];
         echo "</td>";
     }
     echo "<td>";
     echo '<form method="post" class="form-group">';
-    if($row[8]==1 || $row[8]==0 || $row[8]==11) {
-        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default" formaction="editForm.php">Edit</button>';
-    }
-    else {
-        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default disabled" formaction="editForm.php">Edit</button>';
-    }
+        echo '<button type="submit" value="' . $row[0] . '" name="PostID" class="btn btn-default" formaction="editPost.php">Edit</button>';
+    echo "</form>";
+    echo "</td>";
+    echo "<td>";
+    echo '<form method="post" class="form-group">';
+    echo '<button type="submit" value="' . $row[0] . '" name="PostID" class="btn btn-default" formaction="deletePost.php">Delete</button>';
     echo "</form>";
     echo "</td>";
     echo "</tr>";
