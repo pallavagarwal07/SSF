@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = sprintf("Delete from Senators where Email='%s'", $_POST['Username']);
+$query = sprintf("Delete from Senators where Username='%s'", $_POST['Username']);
 if (mysqli_query($conn, $query) == TRUE) {
     echo "<script>
         alert('Senator Deleted');

@@ -13,6 +13,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
+        <div id="body" class="col-lg-8">
     <!--<body>-->
         Hi
 <?php
@@ -22,8 +23,11 @@ echo $_SESSION["username"];
 
 <form method="post" class="form-group">
             <button type="submit" class="btn btn-default" formaction="../../../controllers/logout.php">Logout</button>
+            <button type="submit" class="btn btn-default" formaction="./newPost.php">Create New Post</button>
+            <button type="submit" class="btn btn-default" formaction="../../viewPosts.php">View Posts</button>
+            <button type="submit" class="btn btn-default" formaction="./newSenator.php">Insert New Senator</button>
+            <button type="submit" class="btn btn-default" formaction="../../viewSenator.php">View Senator</button>
         </form>
-        <div id="body" class="col-lg-8">
 
             <h1>Senator Seed Fund</h1>
             <form method="post" class="form-group">

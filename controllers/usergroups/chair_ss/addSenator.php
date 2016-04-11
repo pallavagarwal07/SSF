@@ -14,17 +14,18 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$query = sprintf("insert into Senators (RollNumber,Name, Usermame, Post, UsedMoney, PledgeMoney) values ( %d, '%s', '%s', '%s', %f, %f)", $_POST['roll'], $_POST['name'],  $_POST['username'], $_POST['post'], 0.0, 0.0);
-//echo $query;
+$query = sprintf("insert into Senators (RollNumber, Name, Username, Post, UsedMoney, PledgeMoney) values ( %d, '%s', '%s', '%s', %f, %f)", $_POST['roll'], $_POST['name'],  $_POST['username'], $_POST['post'], 0.0, 0.0);
+echo $query;
 if (mysqli_query($conn, $query) == TRUE) {
-    echo "New Senator created successfully";
-        //session_start();
-        //$_SESSION["username"] = $_POST['name'];
-        //$_SESSION["id"] = session_id();
-        // header('Location: ./homepage.html');
+    echo "<script>
+        alert('Senator Added');
+    window.location.href='../../../views/usergroups/chair_ss/newSenator.php';
+</script>";
 } else {
-    echo "Error: Senator not added!";
-        //header('Location: ./newSenator.html');
+    echo "<script>
+        alert('Unable to add Senator. Please Check!');
+    window.location.href='../../../views/usergroups/chair_ss/newSenator.php';
+</script>";
 }
 mysqli_close($conn);
 ?>

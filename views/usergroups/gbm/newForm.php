@@ -28,14 +28,14 @@
                     Expiry Date:<input type="date" class="form-control" name="expiry" placeholder="Enter date of expiry" data-date-format="mm/dd/yyyy">
                     Council:
                     <select class="form-control" name="council">
-                        <option value="Cultural">Cultural Council</option>
-                        <option value="GnS">Games and Sports Council</option>
-                        <option value="Presidential">Presidential Council</option>
-                        <option value="FMC">Films and Media Council</option>
-                        <option value="SnT">Science and Technology Council</option>
+                        <option value="culsecy">Cultural Council</option>
+                        <option value="sportsecy">Games and Sports Council</option>
+                        <option value="presidentsg">Presidential Council</option>
+                        <option value="fmcsecy">Films and Media Council</option>
+                        <option value="sntsecy">Science and Technology Council</option>
                     </select>
-                    <button type="submit" class="btn btn-default" formaction="saveForm.php">Save</button>
-                    <button type="submit" class="btn btn-default" formaction="submitForm.php">Submit</button>
+                    <button type="submit" class="btn btn-default" formaction="../../../controllers/usergroups/gbm/saveForm.php">Save</button>
+                    <button type="submit" class="btn btn-default" formaction="../../../controllers/usergroups/gbm/submitForm.php">Submit</button>
                 </form>
             </div>
         </div>

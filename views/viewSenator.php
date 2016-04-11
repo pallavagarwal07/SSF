@@ -15,7 +15,7 @@ SSF
 <body>
 <div class="container-fluid">
 <?php
-include "./redirect.php";
+include "../controllers/redirect.php";
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";
@@ -25,8 +25,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "select Name, Email as Username, RollNumber as 'Roll Number', Post, UsedMoney as 'Used Money', PledgeMoney as 'Money already Pledged' from Senators";
-
+$query = "select Name, Username, RollNumber as 'Roll Number', Post, UsedMoney as 'Used Money', PledgeMoney as 'Money already Pledged' from Senators";
 $result = mysqli_query($conn, $query);
 echo "<table class='table table-striped' width='100%'>";
 echo "<thead>";
@@ -59,7 +58,7 @@ while ($row=mysqli_fetch_row($result))
     echo "</td>";
     echo "<td>";
     echo '<form method="post" class="form-group">';
-    echo '<button type="submit" value="' . $row[1] . '" name="Username" class="btn btn-default" formaction="deleteSenator.php">Delete</button>';
+    echo '<button type="submit" value="' . $row[1] . '" name="Username" class="btn btn-default" formaction="../controllers/usergroups/chair_ss/deleteSenator.php">Delete</button>';
     echo "</form>";
     echo "</td>";
     echo "</tr>";

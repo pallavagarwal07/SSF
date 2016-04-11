@@ -1,6 +1,6 @@
 <?php
 include '../../../controllers/redirect.php';
-if($_SESSION["username"]!="chair_ss") {
+if($_SESSION["username"]=="chair_ss" || $_SESSION["username"]=="presidentsg" || $_SESSION["username"]=="culsecy" || $_SESSION["username"]=="fmcsecy" || $_SESSION["username"]=="sportsecy" || $_SESSION["username"]=="finance" || $_SESSION["username"]=="sntsecy") {
     echo "<script>
         alert('You do not have access rights!');
     window.location.href='../../../controllers/logout.php';
@@ -25,26 +25,15 @@ if($_SESSION["username"]!="chair_ss") {
 
     <body>
         <div class="container-fluid">
-Hi
+        Hi
 <?php
 echo $_SESSION["username"];
 ?>
         <form method="post" class="form-group">
             <button type="submit" class="btn btn-default" formaction="../../../controllers/logout.php">Logout</button>
-            <button type="submit" class="btn btn-default" formaction="./newPost.php">Create New Post</button>
-            <button type="submit" class="btn btn-default" formaction="../../viewPosts.php">View Posts</button>
-            <button type="submit" class="btn btn-default" formaction="./newSenator.php">Insert New Senator</button>
-            <button type="submit" class="btn btn-default" formaction="../../viewSenator.php">View Senator</button>
+            <button type="submit" class="btn btn-default" formaction="./newForm.php">Create New Form</button>
+            <button type="submit" class="btn btn-default" formaction="./viewForms.php">View Forms</button>
         </form>
-
-            <div id="main" class="col-lg-8">
-                <form method="post" class="form-group">
-
-                    Name:<input type="TEXT" class="form-control" name="name" placeholder="Enter the Post">
-                    Funds:<input type="Number" step="any" class="form-control" name="funds" placeholder="Enter the funds for this post">
-                    <button type="submit" class="btn btn-default" formaction="../../../controllers/usergroups/chair_ss/addPost.php">Add Post</button>
-                </form>
-            </div>
         </div>
     </body>
 </html>
