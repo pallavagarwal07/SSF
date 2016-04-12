@@ -34,16 +34,14 @@ if($valid_session){
 </head>
 
 <body>
-    <div id="container-fluid">
-        <div class="col-lg-8">
-            <h1>SSF</h1>
-            <form method="post" class="form-group">
-                Username: <input type="text" name="username" class="form-control">
-                Password: <input type="PASSWORD" name="password" class="form-control">
-                <button type="submit" class="btn btn-default" formaction="./controllers/login.php">Login</button>
-                <button type="submit" class="btn btn-default" formaction="./controllers/register.php">Register</button>
-            </form>
-        </div>
+    <div id="container" class="col-lg-8">
+        <h1>Senator Seed Fund</h1>
+        <form method="post" class="form-group">
+            Username: <input type="text" name="username" class="form-control" placeholder="Username">
+            Password: <input type="PASSWORD" name="password" class="form-control" placeholder="Password">
+            <button type="submit" class="btn btn-primary" formaction="./controllers/login.php">Login</button>
+            <button type="submit" class="btn btn-default" formaction="./controllers/register.php">Register</button>
+        </form>
     </div>
 </body>
 </html>

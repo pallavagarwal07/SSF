@@ -1,3 +1,12 @@
+<?php
+include "../../../controllers/redirect.php";
+if($_SESSION["username"]!="chair_ss") {
+    echo "<script>
+        alert('You do not have access rights!');
+    window.location.href='../../../controllers/logout.php';
+</script>";
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +26,6 @@
     <!--<body>-->
         Hi
 <?php
-include "../../../controllers/redirect.php";
 echo $_SESSION["username"];
 ?>
 

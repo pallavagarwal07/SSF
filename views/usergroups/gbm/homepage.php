@@ -24,7 +24,7 @@ if($_SESSION["username"]=="chair_ss" || $_SESSION["username"]=="presidentsg" || 
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
         Hi
 <?php
 echo $_SESSION["username"];
@@ -33,6 +33,23 @@ echo $_SESSION["username"];
             <button type="submit" class="btn btn-default" formaction="../../../controllers/logout.php">Logout</button>
             <button type="submit" class="btn btn-default" formaction="./newForm.php">Create New Form</button>
             <button type="submit" class="btn btn-default" formaction="./viewForms.php">View Forms</button>
+<?php
+$servername = "127.0.0.1";
+$username = "root";
+$password = "l;'";
+$dbname = "SSF";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$query = sprintf("select * from Senators where Username = '%s'", $_SESSION['username']);
+//echo $query;
+$result = mysqli_query($conn, $query);
+if(mysqli_num_rows($result) > 0)
+{
+    echo '<button type="submit" class="btn btn-default" formaction="./senator/addMoney.php">Add Money to Active Forms</button>';
+}
+?>
         </form>
         </div>
     </body>

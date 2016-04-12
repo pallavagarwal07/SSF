@@ -1,10 +1,10 @@
 create table Funds (Post varchar(50) Primary Key, TotalMoney real);
-create table Senators (RollNumber bigint Primary Key, Name varchar(50), Username varchar(20), Post varchar(50), UsedMoney real, PledgeMoney real, Foreign Key(Post) References Funds(Post));
+create table Senators (RollNumber bigint , Name varchar(50), Username varchar(15) Primary Key, Post varchar(50), UsedMoney real, PledgeMoney real, Foreign Key(Post) References Funds(Post));
 create table StatesOfApproval (ID int Primary Key, State varchar(250));
 create table Users(Username varchar(15) PRIMARY KEY, Password varchar(1000));
 create table Forms(FormID int Primary Key AUTO_INCREMENT, Name varchar(50), RollNumber bigint, Email varchar(20), Phone varchar(15), Event varchar(100), Council varchar(50), CreationDate date, ExpiryDate date, TargetAmount real, ApprovalState int, Remark varchar(1000) Default NULL, Username varchar(15), Foreign Key(ApprovalState) References StatesOfApproval(ID), Foreign Key(Username) References Users(Username));
-create table PledgedMoney(FormID int, SenatorID bigint, MoneyPledged real, Date date, Foreign Key(FormID) References Forms(FormID), Foreign Key(SenatorID) References Senators(RollNumber), Primary Key(FormID, SenatorID));
-create table UsedMoney(FormID int, SenatorID bigint, MoneyUsed real, Date date, Foreign Key(FormID) References Forms(FormID), Foreign Key(SenatorID) References Senators(RollNumber), Primary Key(FormID, SenatorID));
+create table PledgedMoney(FormID int, SenatorID varchar(15), MoneyPledged real, Date date, Foreign Key(FormID) References Forms(FormID), Foreign Key(SenatorID) References Senators(Username), Primary Key(FormID, SenatorID));
+create table UsedMoney(FormID int, SenatorID varchar(15), MoneyUsed real, Date date, Foreign Key(FormID) References Forms(FormID), Foreign Key(SenatorID) References Senators(Username), Primary Key(FormID, SenatorID));
 
 insert into StatesOfApproval values (0, 'Form not submitted to Executive'),
 (1, 'Awaiting approval by Executive'),
