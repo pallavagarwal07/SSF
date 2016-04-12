@@ -1,6 +1,12 @@
 <?php
 echo "Abc";
  include "../../../controllers/redirect.php";
+ if($_SESSION["username"]!="presidentsg" && $_SESSION["username"]!="culsecy" && $_SESSION["username"]!="fmcsecy" && $_SESSION["username"]!="sportsecy" && $_SESSION["username"]!="sntsecy") {
+    echo "<script>
+        alert('You do not have access rights!');
+    window.location.href='../../../controllers/logout.php';
+</script>";
+}
  $servername = "127.0.0.1";
  $username = "root";
  $password = "l;'";

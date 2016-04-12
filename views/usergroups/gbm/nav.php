@@ -19,13 +19,16 @@
                 <?php
                 if($insideSenateDir){
                 	echo '<li><a class="" href="./addMoney.php">Add Money to Active Forms</a></li>';
+                    echo '<li><a href="../../../viewPosts.php">View all Posts</a></li>';
+                echo '<li><a href="../../../viewSenator.php">View all Senators</a></li>';
                 }else{
                 	if($GLOBALS['isSenator'] == true)
                 	echo '<li><a class="" href="./senator/addMoney.php">Add Money to Active Forms</a></li>';
+                echo '<li><a href="../../viewPosts.php">View all Posts</a></li>';
+                echo '<li><a href="../../viewSenator.php">View all Senators</a></li>';
                 }
                 ?>
-                <li><a href="../../viewPosts.php">View all Posts</a></li>
-                <li><a href="../../viewSenator.php">View all Senators</a></li>
+                
              </ul>
         </div>
   </div>

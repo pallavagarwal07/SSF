@@ -25,7 +25,7 @@ include "../../../controllers/redirect.php";
 if($_SESSION["username"]!="chair_ss") {
     echo "<script>
         alert('You do not have access rights!');
-    window.location.href='../../logout.php';
+    window.location.href='../../../controllers/logout.php';
 </script>";
 }
 // echo $_SESSION['username'];

@@ -11,6 +11,16 @@ if ($conn->connect_error) {
 $query = sprintf("select * from Senators where Username = '%s'", $_SESSION['username']);
 //echo $query;
 $result = mysqli_query($conn, $query);
+if(mysqli_num_rows($result) == 0)
+{
+    echo "<script>
+        alert('You do not have access rights!');
+    window.location.href='../../../../controllers/logout.php';
+</script>";
+}
+$query = sprintf("select * from Senators where Username = '%s'", $_SESSION['username']);
+//echo $query;
+$result = mysqli_query($conn, $query);
 $GLOBALS['isSenator'] = false;
 if(mysqli_num_rows($result) > 0)
 {

@@ -50,7 +50,7 @@ if(mysqli_num_rows($result) > 0)
                 Successfully Pledged Money.
             </div>
             <div style="display:<?php  echo $_GET['msg']=='n'?'':'none'; ?>" class="alert alert-danger" role="alert">
-                Couldn't Pledge Money.
+                Couldn't Pledge Money because you don't have sufficient funds.
             </div>
             <div style="display:<?php  echo $_GET['msg']=='se'?'':'none'; ?>" class="alert alert-success" role="alert">
                 Successfully Updated Form.

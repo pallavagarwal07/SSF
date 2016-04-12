@@ -19,14 +19,31 @@ echo $query;
 if($_POST['state']==7){
 	$query2= sprintf("Select FormID, SenatorID, MoneyPledged from PledgedMoney where FormID = %d", $_POST['FormID']);
 	$result2 = mysqli_query($conn, $query2);
-	echo $query2;
+	//echo $query2." ";
 	while($row=mysqli_fetch_row($result2)){
 		$query3 = sprintf("Insert into UsedMoney (FormID, SenatorID, MoneyUsed, Date) values (%d, '%s', %f, CURDATE())", $row[0],$row[1],$row[2]);
 		$query4 = sprintf("Delete from PledgedMoney where FormID = %d and SenatorID = '%s'", $row[0], $row[1] );
-		$query5 = sprintf("Update Senators SET PledgeMoney = PledgeMoney-%f , UsedMoney = UsedMoney + %f", $row[2], $row[2]);
-		echo $query3;
-
+		$query5 = sprintf("Update Senators SET PledgeMoney = PledgeMoney-%f , UsedMoney = UsedMoney + %f where Username='%s'", $row[2], $row[2], $row[1]);
+		echo $query3." ";
+echo $query4." ";
+echo $query5." ";
 		$result3 =mysqli_query($conn, $query3);
+		$result4 = mysqli_query($conn, $query4);
+		$result5 = mysqli_query($conn, $query5);
+
+	}
+}
+if($_POST['state']==10){
+	$query2= sprintf("Select FormID, SenatorID, MoneyPledged from PledgedMoney where FormID = %d", $_POST['FormID']);
+	$result2 = mysqli_query($conn, $query2);
+	echo $query2;
+	while($row=mysqli_fetch_row($result2)){
+		// $query3 = sprintf("Insert into UsedMoney (FormID, SenatorID, MoneyUsed, Date) values (%d, '%s', %f, CURDATE())", $row[0],$row[1],$row[2]);
+		$query4 = sprintf("Delete from PledgedMoney where FormID = %d and SenatorID = '%s'", $row[0], $row[1] );
+		$query5 = sprintf("Update Senators SET PledgeMoney = PledgeMoney-%f  where Username='%s'", $row[2], $row[1]);
+echo $query3;
+
+		// $result3 =mysqli_query($conn, $query3);
 		$result4 = mysqli_query($conn, $query4);
 		$result5 = mysqli_query($conn, $query5);
 

@@ -104,7 +104,7 @@ while ($row=mysqli_fetch_row($result))
         echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-primary" formaction="./pledgeDetails.php">Pledge Details</button>';
         echo '</td>';
         echo '<td>';
-        echo '<input type = "number" name = "money" value = ' . $row2[0] . ' max = '.$money.'>';
+        echo '<input type = "number" name = "money" value = ' . $row2[0] . '>';
         if($row2[0]==0)
             echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" style= "margin-top : 5px" class="btn btn-default" formaction="./updateMoney.php">Confirm</button>';
         else 

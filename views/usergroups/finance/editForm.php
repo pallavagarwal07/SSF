@@ -21,7 +21,7 @@
         <div id="body" class="col-lg-8 centered" style="text-align: center;width: 100%;">
             <!--<h1>Senator Seed Fund</h1>-->
 <?php
-include "../../../../controllers/redirect.php";
+include "../../../controllers/redirect.php";
 if($_SESSION["username"]!="finance") {
     echo "<script>
         alert('You do not have access rights!');
@@ -69,7 +69,6 @@ if($row[9] != 8 && $row[9]!=7){
        <option value="4" ';if($row[9]==4 || $row[9]==5 || $row[9]==6 ) echo 'selected'; echo '>Unapproved</option> 
        <option value="7" '; echo '>Approve</option> 
        <option value="10" '; echo '>Reject</option> 
-       <option value="11" ';echo '>Send Back to '.$row[0].'</option>
         </select>';
     echo '<button type="submit" name="FormID" class="btn btn-default btn-primary" style="margin-top:10px" value="'.$_POST['FormID'].'" formaction="./updateForm.php">Confirm</button>';
 }
@@ -77,7 +76,7 @@ else{
     echo 'State:';
     echo '<select class="form-control" name="state" disabled>
        <option value="7" ';if($row[9]==7) echo 'selected'; echo '>Approved</option> 
-       <option value="8" ';if($row[9]==8) echo 'selected'; echo '>Rejected</option> 
+       <option value="10" ';if($row[9]==10) echo 'selected'; echo '>Rejected</option> 
         </select>';
     echo '<button type="submit" name="FormID" class="btn btn-default btn-primary" disabled style="margin-top:10px" value="'.$_POST['FormID'].'" disabled>Confirm</button>';
 }
