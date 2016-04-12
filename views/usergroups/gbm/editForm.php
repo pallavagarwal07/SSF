@@ -36,7 +36,7 @@ $row=mysqli_fetch_row($result);
 
 echo 'Name:<input type="TEXT" class="form-control" name="name" value= "'. $row[0].'" >' ;
 echo 'Roll Number:<input type="Number" class="form-control" name="roll" value ="'. $row[1] .'">';
-echo 'Phone Number:<input type="tel" class="form-control" name="phone" value =" '. $row[3] .'">';
+echo 'Phone Number:<input type="tel" class="form-control" name="phone" value ="'. $row[3] .'">';
 echo 'Email ID:<input type="email" class="form-control" name="email" value="'. $row[2] .'">';
 echo 'Event Details:<input type="url" class="form-control" name="event" value="'. $row[4] .'">';
 echo 'Target Amount (in Rs.):<input type="number" step="any" class="form-control" name="amount" value ="'. $row[5] .'">';

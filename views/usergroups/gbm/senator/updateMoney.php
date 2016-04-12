@@ -9,9 +9,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-echo $_SESSION['username'];
-echo $_POST['FormIDD'];
-
 
 $query2 = sprintf("Insert into PledgedMoney (FormID, SenatorID, MoneyPledged, Date ) values ( %d, '%s', %f, CURDATE())" , $_POST['FormIDD'],$_SESSION['username'] ,$_POST['money'] );
 $query3 = sprintf("Update Senators SET PledgeMoney = PledgeMoney + %f WHERE Username = '%s'" ,$_POST['money'], $_SESSION['username']);
@@ -28,19 +25,17 @@ if($row1[0] <= $row2){
     $result3 = mysqli_query($conn, $query6);
 }
 if (mysqli_query($conn, $query2) == TRUE && mysqli_query($conn, $query3) == TRUE  ) {
-    echo "Money Pledged successfully";
+    
     // echo $query2 ;
 
         //session_start();
         //$_SESSION["username"] = $_POST['name'];
         //$_SESSION["id"] = session_id();
-        // header('Location: ./viewForms_senator.php');
+        header('Location: ./../homepage.php?msg=s');
 } else {
-    echo "Error: Money not pledged!";
-    echo $query2 ;
-        // header('Location: ./viewForms_senator.php');
+    
+        header('Location: ./../homepage.php?msg=n');
 }
-
 mysqli_close($conn);
 
 ?>

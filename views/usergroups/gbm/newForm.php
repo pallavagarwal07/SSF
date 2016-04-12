@@ -14,11 +14,33 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
 
-    <body>
-        <div class="container-fluid">
-            <div id="main" class="col-lg-8">
-                <form method="post" class="form-group">
-
+    <body style="background:#ebebe0">
+        <div class="container">
+            <?php
+                include "../../../controllers/redirect.php";
+                $servername = "127.0.0.1";
+                $username = "root";
+                $password = "l;'";
+                $dbname = "SSF";
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                $query = sprintf("select * from Senators where Username = '%s'", $_SESSION['username']);
+                //echo $query;
+                $result = mysqli_query($conn, $query);
+                $GLOBALS['isSenator'] = false;
+                if(mysqli_num_rows($result) > 0)
+                {
+                    $GLOBALS['isSenator'] = true;
+                }
+                include 'nav.php';
+            ?>
+            <div id="main" class="col-lg-12" style="text-align:center">
+                <form method="post" class="form-group panel panel-default" style="padding:40px;margin:10px auto;    display: inline-block;width: 675px;text-align: left;">
+                    <div class="panel-body" style="padding: 0;font-size: 18px;margin-bottom: 17px;">
+                        New Form
+                    </div>
                     Name:<input type="TEXT" class="form-control" name="name" placeholder="Enter your name">
                     Roll Number:<input type="Number" class="form-control" name="roll" placeholder="Enter your roll number">
                     Phone Number:<input type="tel" class="form-control" name="phone" placeholder="Enter your number">
@@ -34,8 +56,10 @@
                         <option value="fmcsecy">Films and Media Council</option>
                         <option value="sntsecy">Science and Technology Council</option>
                     </select>
-                    <button type="submit" class="btn btn-default" formaction="../../../controllers/usergroups/gbm/saveForm.php">Save</button>
-                    <button type="submit" class="btn btn-default" formaction="../../../controllers/usergroups/gbm/submitForm.php">Submit</button>
+                    <div style="margin-top:25px;">
+                        <button type="submit" class="btn btn-default btn-primary" formaction="../../../controllers/usergroups/gbm/saveForm.php">Save</button>
+                        <button type="submit" class="btn btn-default" formaction="../../../controllers/usergroups/gbm/submitForm.php">Submit</button>
+                    </div>
                 </form>
             </div>
         </div>

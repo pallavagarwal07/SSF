@@ -3,11 +3,13 @@
 
 body {
     background-color: #ebebe0;
-    margin: 40px;
     font: 13px/20px normal Helvetica, Arial, sans-serif;
     color: #4F5155;
 }
-
+.apniTable{
+    margin-top: 40px;
+    border:solid 1px #ddd;
+}
 a {
     color: #003399;
     background-color: transparent;
@@ -52,13 +54,15 @@ p.footer {
 }
 
 #container {
-    margin: 10px;
+    /*margin: 50%;*/
     background-color: #fff;
     border: 1px solid #D0D0D0;
     box-shadow: 0 0 10px #D0D0D0;
     width: 50%;
     vertical-align: middle;
     border-radius: 10px;
+    padding : auto;
+
 }
 
 .form-control {

@@ -1,4 +1,24 @@
 <?php
+include "../../../../controllers/redirect.php";
+$servername = "127.0.0.1";
+$username = "root";
+$password = "l;'";
+$dbname = "SSF";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$query = sprintf("select * from Senators where Username = '%s'", $_SESSION['username']);
+//echo $query;
+$result = mysqli_query($conn, $query);
+$GLOBALS['isSenator'] = false;
+if(mysqli_num_rows($result) > 0)
+{
+    $GLOBALS['isSenator'] = true;
+}
+$GLOBALS['dir']='senator';
+?>
+<?php
 echo '<html>
 <head>
 <meta charset="utf-8">
@@ -15,26 +35,18 @@ SSF
 </head>
 
 <body>
-<div class="container-fluid">
+<div class="container">
 ';
-include "./redirect.php";
-$servername = "127.0.0.1";
-$username = "root";
-$password = "l;'";
-$dbname = "SSF";
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo '<h1>';
-echo "Form";
-echo $_POST['FormID'];
-echo '</h1>';
+include '../nav.php';
 
+echo '<div class="panel-body" style="padding: 0;font-size: 18px;margin-bottom: 17px;">
+                    Form ID : ' .$_POST['FormID'] . ' - Pledging Details
+    </div>
+';
 $query = sprintf("SELECT SenatorID, MoneyPledged, Date FROM PledgedMoney WHERE FormID = %d", $_POST['FormID']);
 
 $result = mysqli_query($conn, $query);
-echo "<table class='table table-striped' width='100%'>";
+echo "<table class='table table-striped panel panel-default' width='100%'>";
 echo "<thead>";
 while($field=mysqli_fetch_field($result))
 {

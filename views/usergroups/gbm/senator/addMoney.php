@@ -11,6 +11,45 @@ if ($conn->connect_error) {
 $query = sprintf("select * from Senators where Username = '%s'", $_SESSION['username']);
 //echo $query;
 $result = mysqli_query($conn, $query);
+$GLOBALS['isSenator'] = false;
+if(mysqli_num_rows($result) > 0)
+{
+    $GLOBALS['isSenator'] = true;
+}
+$GLOBALS['dir']='senator';
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Kunal Kapila & Sanjari Srivastava">
+        <title>
+            Edit Form
+        </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/homepage.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </head>
+    <body class="container">
+        <?php
+        include '../nav.php';
+        ?>
+<?php
+include "../../../../controllers/redirect.php";
+$servername = "127.0.0.1";
+$username = "root";
+$password = "l;'";
+$dbname = "SSF";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$query = sprintf("select * from Senators where Username = '%s'", $_SESSION['username']);
+//echo $query;
+$result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) == 0)
 {
 	echo "<script>
@@ -19,7 +58,7 @@ if(mysqli_num_rows($result) == 0)
 </script>";
 }
 $query3 = sprintf("select RollNumber, Name, Username, PledgeMoney, UsedMoney, Funds.TotalMoney from Senators inner join Funds on Funds.Post=Senators.Post where Username = '%s'", $_SESSION['username']);
-echo $query3;
+// echo $query3;
 $result3 = mysqli_query($conn, $query3);
 $row3=mysqli_fetch_row($result3);
 
@@ -29,7 +68,7 @@ $query = sprintf("select FormID as 'Form ID', Event, CreationDate as 'Date of Cr
 // echo $query;
 // echo $query2;
 $result = mysqli_query($conn, $query);
-echo "<table class='table table-striped' width='100%'>";
+echo "<table class='table panel panel-default table-striped' width='100%' style='margin-top:55px;'>";
 echo "<thead>";
 while($field=mysqli_fetch_field($result))
 {
@@ -62,13 +101,14 @@ while ($row=mysqli_fetch_row($result))
 	$row2 = mysqli_fetch_row($result2);
     echo "<td>";
     echo '<form method="post" class="form-group">';
-        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default" formaction="./pledgeDetails.php">Pledge Details</button>';
+        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-primary" formaction="./pledgeDetails.php">Pledge Details</button>';
         echo '</td>';
         echo '<td>';
-        echo $row2[0];
         echo '<input type = "number" name = "money" value = ' . $row2[0] . ' max = '.$money.'>';
-        echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" class="btn btn-default disabled" formaction="./updateMoney.php">Confirm</button>';
- 
+        if($row2[0]==0)
+            echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" style= "margin-top : 5px" class="btn btn-default" formaction="./updateMoney.php">Confirm</button>';
+        else 
+            echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" style= "margin-top : 5px" class="btn btn-default" disabled>Already Pledged</button>';
     echo "</form>";
     echo "</td>";
     echo "</tr>";
