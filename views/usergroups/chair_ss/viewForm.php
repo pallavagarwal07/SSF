@@ -23,11 +23,18 @@ if($_SESSION["username"]!="chair_ss") {
         <script src="js/bootstrap.min.js"></script>
     </head>
 
-    <!--<body>-->
-        <div id="body" class="col-lg-8">
+<body style="background:#ebebe0" class="container">
+        <?php
+            include 'nav.php';
+        ?>
+        <div id="body" class="col-lg-8 centered" style="text-align: center;width: 100%;">
             <!--<h1>Senator Seed Fund</h1>-->
-            <form method="post" class="form-group">
+            <form method="post" form method="post" class="form-group panel panel-default" style="padding:40px;margin:10px auto;    display: inline-block;width: 675px;text-align: left;">
+                 <div class="panel-body" style="padding: 0;font-size: 18px;margin-bottom: 17px;">
+            Form ID : <?php echo $_POST["FormID"] ; ?>
+          </div>
 <?php
+include "../../../../controllers/redirect.php";
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";
@@ -60,6 +67,6 @@ echo '<select class="form-control" name="state" disabled>
    <option value="9" ';if($row[9]==9) echo 'selected'; echo '>Reject</option> 
    <option value="11" ';if($row[9]==11) echo 'selected'; echo '>Send Back to '.$row[0].'</option>
     </select>';
-//echo '<button type="submit" name="FormID" class="btn btn-default" value="'.$_POST['FormID'].'" formaction="./updateForm.php">Confirm</button>';
+echo '<a type="submit" name="FormID" href= "./viewForms.php" style = "margin-top : 10px" class="btn btn-primary" value="'.$_POST['FormID'].'">Go Back</a>';
 echo '</form></div></html>'; 
 ?>

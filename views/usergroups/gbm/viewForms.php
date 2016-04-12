@@ -17,6 +17,12 @@ SSF
 
 <?php
 include "../../../controllers/redirect.php";
+if($_SESSION["username"]=="chair_ss" || $_SESSION["username"]=="presidentsg" || $_SESSION["username"]=="culsecy" || $_SESSION["username"]=="fmcsecy" || $_SESSION["username"]=="sportsecy" || $_SESSION["username"]=="finance" || $_SESSION["username"]=="sntsecy") {
+    echo "<script>
+        alert('You do not have access rights!');
+    window.location.href='../../../controllers/logout.php';
+</script>";
+}
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";
@@ -72,12 +78,12 @@ while ($row=mysqli_fetch_row($result))
     if($row[7]==1 || $row[7]==0 || $row[7]==11) {
         echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default" formaction="./editForm.php">Edit</button>';
         echo '</td><td>';
-        echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" class="btn btn-default" formaction="../../../controllers/deleteForm.php">Delete</button>';
+        echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" class="btn btn-default" formaction="./deleteForm.php">Delete</button>';
     }
     else {
-        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default disabled" formaction="./editForm.php">Edit</button>';
+        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default disabled">Edit</button>';
         echo '</td><td>';
-        echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" class="btn btn-default disabled" formaction="../../../controllers/deleteForm.php">Delete</button>';
+        echo '<button type="submit" value="' . $row[0] . '" name="FormIDD" class="btn btn-default disabled">Delete</button>';
     }
     echo "</form>";
     echo "</td>";

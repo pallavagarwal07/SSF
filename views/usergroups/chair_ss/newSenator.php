@@ -22,23 +22,12 @@ if($_SESSION["username"]!="chair_ss") {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
     </head>
-        <div id="body" class="col-lg-8">
-    <!--<body>-->
-        Hi
-<?php
-echo $_SESSION["username"];
-?>
-
-<form method="post" class="form-group">
-            <button type="submit" class="btn btn-default" formaction="../../../controllers/logout.php">Logout</button>
-            <button type="submit" class="btn btn-default" formaction="./newPost.php">Create New Post</button>
-            <button type="submit" class="btn btn-default" formaction="../../viewPosts.php">View Posts</button>
-            <button type="submit" class="btn btn-default" formaction="./newSenator.php">Insert New Senator</button>
-            <button type="submit" class="btn btn-default" formaction="../../viewSenator.php">View Senator</button>
-        </form>
+    <body>
+<div class="container">
+        <?php include "./nav.php";?>
 
             <h1>Senator Seed Fund</h1>
-            <form method="post" class="form-group">
+            <form method="post" class="form-group panel panel-default" style="padding:20px;">
                 Name:<input type="TEXT" class="form-control" name="name" placeholder="Enter Senator's name">
                 Roll Number:<input type="Number" class="form-control" name="roll" placeholder="Enter Senator's roll number">
                 Username:<input type="TEXT" class="form-control" name="username" placeholder="Enter Senator's username">

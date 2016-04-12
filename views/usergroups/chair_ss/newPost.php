@@ -24,21 +24,9 @@ if($_SESSION["username"]!="chair_ss") {
     </head>
 
     <body>
-        <div class="container-fluid">
-Hi
-<?php
-echo $_SESSION["username"];
-?>
-        <form method="post" class="form-group">
-            <button type="submit" class="btn btn-default" formaction="../../../controllers/logout.php">Logout</button>
-            <button type="submit" class="btn btn-default" formaction="./newPost.php">Create New Post</button>
-            <button type="submit" class="btn btn-default" formaction="../../viewPosts.php">View Posts</button>
-            <button type="submit" class="btn btn-default" formaction="./newSenator.php">Insert New Senator</button>
-            <button type="submit" class="btn btn-default" formaction="../../viewSenator.php">View Senator</button>
-        </form>
-
-            <div id="main" class="col-lg-8">
-                <form method="post" class="form-group">
+<div class="container">
+        <?php include "./nav.php";?>
+                <form method="post" class="form-group panel panel-default" style="padding:20px;">
 
                     Name:<input type="TEXT" class="form-control" name="name" placeholder="Enter the Post">
                     Funds:<input type="Number" step="any" class="form-control" name="funds" placeholder="Enter the funds for this post">

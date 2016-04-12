@@ -4,10 +4,9 @@
              <ul class="nav navbar-nav navbar-right">
                 <li><a class="" href="../../../controllers/logout.php">Logout</a></li>
              </ul>
-             <a class="navbar-brand" href="../finance/homepage.php">Home</a>
+             <a class="navbar-brand" href="./homepage.php">Home</a>
              <ul class="nav navbar-nav navbar-left">
-                <li><a href="../../viewPosts.php">View all Posts</a></li>
-                <li><a href="../../viewSenator.php">View all Senators</a></li>
+                <li><a href="./viewForms.php">View Pending Forms</a></li>
              </ul>
         </div>
   </div>

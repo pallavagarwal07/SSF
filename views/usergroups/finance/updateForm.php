@@ -1,5 +1,11 @@
 <?php
 include "../../../controllers/redirect.php";
+if($_SESSION["username"]!="finance") {
+    echo "<script>
+        alert('You do not have access rights!');
+    window.location.href='../../../controllers/logout.php';
+</script>";
+}
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";

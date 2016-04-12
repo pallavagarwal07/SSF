@@ -18,6 +18,12 @@
         <div class="container">
             <?php
                 include "../../../controllers/redirect.php";
+                if($_SESSION["username"]=="chair_ss" || $_SESSION["username"]=="presidentsg" || $_SESSION["username"]=="culsecy" || $_SESSION["username"]=="fmcsecy" || $_SESSION["username"]=="sportsecy" || $_SESSION["username"]=="finance" || $_SESSION["username"]=="sntsecy") {
+    echo "<script>
+        alert('You do not have access rights!');
+    window.location.href='../../../controllers/logout.php';
+</script>";
+}
                 $servername = "127.0.0.1";
                 $username = "root";
                 $password = "l;'";
@@ -57,8 +63,8 @@
                         <option value="sntsecy">Science and Technology Council</option>
                     </select>
                     <div style="margin-top:25px;">
-                        <button type="submit" class="btn btn-default btn-primary" formaction="../../../controllers/usergroups/gbm/saveForm.php">Save</button>
-                        <button type="submit" class="btn btn-default" formaction="../../../controllers/usergroups/gbm/submitForm.php">Submit</button>
+                        <button type="submit" class="btn btn-default btn-primary" formaction="./saveForm.php">Save</button>
+                        <button type="submit" class="btn btn-default" formaction="./submitForm.php">Submit</button>
                     </div>
                 </form>
             </div>

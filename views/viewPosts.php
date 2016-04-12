@@ -13,7 +13,27 @@ SSF
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+        <div class="navbar-header" style="width:100%">
+             <ul class="nav navbar-nav navbar-right">
+                <li><a class="" href="../../../controllers/logout.php">Logout</a></li>
+             </ul>
+             <a class="navbar-brand" href="../../">Home</a>
+             <ul class="nav navbar-nav navbar-left">
+                <li><a href="./viewPosts.php">View all Posts</a></li>
+                <li><a href="./viewSenator.php">View all Senators</a></li>
+             </ul>
+        </div>
+  </div>
+</nav>
+<div style="display:<?php  echo $_GET['msg']=='s'?'':'none'; ?>" class="alert alert-success" role="alert">
+    Successfully updated Post.
+</div>
+<div style="display:<?php  echo $_GET['msg']=='n'?'':'none'; ?>" class="alert alert-danger" role="alert">
+    Couldn't update Post. It is already a dependency in the Senators table!
+</div>
 <?php
 include "../controllers/redirect.php";
 $servername = "127.0.0.1";
@@ -28,7 +48,7 @@ if ($conn->connect_error) {
 $query = "select Post, TotalMoney as 'Available Funds' from Funds";
 
 $result = mysqli_query($conn, $query);
-echo "<table class='table table-striped' width='100%'>";
+echo "<table class='table table-striped panel panel-default' width='100%'>";
 echo "<thead>";
 while($field=mysqli_fetch_field($result))
 {
@@ -53,8 +73,9 @@ while ($row=mysqli_fetch_row($result))
         echo "</td>";
     }
     echo "<td>";
+    //echo $row[0];
     echo '<form method="post" class="form-group">';
-        echo '<button type="submit" value="' . $row[0] . '" name="PostID" class="btn btn-default" formaction="editPost.php">Edit</button>';
+        echo '<button type="submit" name="PostIDD" value="' . $row[0] . '"  class="btn btn-default" formaction="./usergroups/chair_ss/editPost.php">Edit</button>';
     echo "</form>";
     echo "</td>";
     echo "<td>";

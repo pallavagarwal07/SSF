@@ -6,6 +6,9 @@ create table Forms(FormID int Primary Key AUTO_INCREMENT, Name varchar(50), Roll
 create table PledgedMoney(FormID int, SenatorID varchar(15), MoneyPledged real, Date date, Foreign Key(FormID) References Forms(FormID), Foreign Key(SenatorID) References Senators(Username), Primary Key(FormID, SenatorID));
 create table UsedMoney(FormID int, SenatorID varchar(15), MoneyUsed real, Date date, Foreign Key(FormID) References Forms(FormID), Foreign Key(SenatorID) References Senators(Username), Primary Key(FormID, SenatorID));
 
+Alter table Forms add constraint check_dates check (CreationDate<ExpriryDate);
+Alter table Forms add constraint check_dates check (0<DATEDIFF(ExpiryDate ,CreationDate) and DATEDIFF(ExpiryDate ,CreationDate)<60);
+
 insert into StatesOfApproval values (0, 'Form not submitted to Executive'),
 (1, 'Awaiting approval by Executive'),
 (2, 'Awaiting approval by Chairperson'),

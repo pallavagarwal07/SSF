@@ -21,8 +21,15 @@ SSF
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="container-fluid">
+    <body>
+<div class="container">
+        <?php include "./nav.php";?>
+<div style="display:<?php  echo $_GET['msg']=='s'?'':'none'; ?>" class="alert alert-success" role="alert">
+    Successfully updated form.
+</div>
+<div style="display:<?php  echo $_GET['msg']=='n'?'':'none'; ?>" class="alert alert-danger" role="alert">
+    Couldn't update form.
+</div>
 <?php
 $servername = "127.0.0.1";
 $username = "root";
@@ -32,10 +39,10 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$query = sprintf("select FormID as 'Form ID', Event, CreationDate as 'Date of Creation', ExpiryDate as 'Date of Expiry', TargetAmount as 'Target Amount (in Rs.)', S.State as 'Status', Remark as 'Remarks', ApprovalState as 'StatusID' from Forms inner join  StatesOfApproval S ON S.ID = Forms.ApprovalState where Council = '%s' and Forms.ApprovalState not in(0,1,8)", $_SESSION["username"]);
-//echo $query;
+$query = sprintf("select FormID as 'Form ID', Event, CreationDate as 'Date of Creation', ExpiryDate as 'Date of Expiry', TargetAmount as 'Target Amount (in Rs.)', S.State as 'Status', Remark as 'Remarks', ApprovalState as 'StatusID' from Forms inner join  StatesOfApproval S ON S.ID = Forms.ApprovalState where Forms.ApprovalState not in(0,1,8)");
+// echo $query;
 $result = mysqli_query($conn, $query);
-echo "<table class='table table-striped' width='100%'>";
+echo "<table class='table table-striped panel panel-default' width='100%'>";
 echo "<thead>";
 while($field=mysqli_fetch_field($result))
 {
@@ -62,11 +69,11 @@ while ($row=mysqli_fetch_row($result))
         echo "</td>";
     }
     echo "<td>";
-    echo '<form method="post" class="form-group">';
+    echo '<form method="post" class="form-group" >';
     echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default" formaction="./viewForm.php">View</button>';
     echo '</td><td>';
     if($row[7]==2 || $row[7]==3 || $row[7]==9) {
-        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default" formaction="../../../controllers/usergroups/executive/editForm.php">Edit</button>';
+        echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default" formaction="./editForm.php">Edit</button>';
     }
     else {
         echo '<button type="submit" value="' . $row[0] . '" name="FormID" class="btn btn-default disabled">Edit</button>';

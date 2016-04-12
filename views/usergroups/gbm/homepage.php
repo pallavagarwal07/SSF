@@ -52,6 +52,24 @@ if(mysqli_num_rows($result) > 0)
             <div style="display:<?php  echo $_GET['msg']=='n'?'':'none'; ?>" class="alert alert-danger" role="alert">
                 Couldn't Pledge Money.
             </div>
+            <div style="display:<?php  echo $_GET['msg']=='se'?'':'none'; ?>" class="alert alert-success" role="alert">
+                Successfully Updated Form.
+            </div>
+            <div style="display:<?php  echo $_GET['msg']=='ne'?'':'none'; ?>" class="alert alert-danger" role="alert">
+                Couldn't Update Form.
+            </div>
+            <div style="display:<?php  echo $_GET['msg']=='sv'?'':'none'; ?>" class="alert alert-success" role="alert">
+                Successfully Saved Form.
+            </div>
+            <div style="display:<?php  echo $_GET['msg']=='nv'?'':'none'; ?>" class="alert alert-danger" role="alert">
+                Couldn't Save Form.
+            </div>
+            <div style="display:<?php  echo $_GET['msg']=='sb'?'':'none'; ?>" class="alert alert-success" role="alert">
+                Successfully Submitted Form.
+            </div>
+            <div style="display:<?php  echo $_GET['msg']=='nb'?'':'none'; ?>" class="alert alert-danger" role="alert">
+                Couldn't Submit Form.
+            </div>
         <h1 style = "font-size: 60px; margin-top: 8% ;text-align: center" > Hi
 <?php
 echo $_SESSION["username"];

@@ -13,7 +13,21 @@ SSF
 <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+        <div class="navbar-header" style="width:100%">
+             <ul class="nav navbar-nav navbar-right">
+                <li><a class="" href="../../../controllers/logout.php">Logout</a></li>
+             </ul>
+             <a class="navbar-brand" href="../../">Home</a>
+             <ul class="nav navbar-nav navbar-left">
+                <li><a href="./viewPosts.php">View all Posts</a></li>
+                <li><a href="./viewSenator.php">View all Senators</a></li>
+             </ul>
+        </div>
+  </div>
+</nav>
 <?php
 include "../controllers/redirect.php";
 $servername = "127.0.0.1";
@@ -25,9 +39,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$query = "select Name, Username, RollNumber as 'Roll Number', Post, UsedMoney as 'Used Money', PledgeMoney as 'Money already Pledged' from Senators";
+$query = "select Name, Username, RollNumber as 'Roll Number', Senators.Post, Funds.TotalMoney-UsedMoney-PledgeMoney as 'Available Money', UsedMoney as 'Used Money', PledgeMoney as 'Money already Pledged' from Senators inner join Funds on Funds.Post=Senators.Post";
 $result = mysqli_query($conn, $query);
-echo "<table class='table table-striped' width='100%'>";
+echo "<table class='table table-striped panel panel-default' width='100%'>";
 echo "<thead>";
 while($field=mysqli_fetch_field($result))
 {
@@ -53,7 +67,7 @@ while ($row=mysqli_fetch_row($result))
     }
     echo "<td>";
     echo '<form method="post" class="form-group">';
-        echo '<button type="submit" value="' . $row[1] . '" name="Username" class="btn btn-default" formaction="editSenator.php">Edit</button>';
+        echo '<button type="submit" value="' . $row[1] . '" name="Username" class="btn btn-default" formaction="./usergroups/chair_ss/editSenator.php">Edit</button>';
     echo "</form>";
     echo "</td>";
     echo "<td>";

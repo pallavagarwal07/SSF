@@ -14,12 +14,14 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
 
-    <!--<body>-->
-        <div id="body" class="col-lg-8">
+    <body style="background:#ebebe0" class="container">
+        <?php
+            include 'nav.php';
+        ?>
+        <div id="body" class="col-lg-8 centered" style="text-align: center;width: 100%;">
             <!--<h1>Senator Seed Fund</h1>-->
-            <form method="post" class="form-group">
 <?php
-include "./redirect.php";
+include "../../../../controllers/redirect.php";
 $servername = "127.0.0.1";
 $username = "root";
 $password = "l;'";
@@ -34,6 +36,11 @@ $query = sprintf("select Name, RollNumber, Email, Phone, Event, TargetAmount, Ex
 $result = mysqli_query($conn, $query);
 $row=mysqli_fetch_row($result);
 
+echo '<form method="post" class="form-group panel panel-default" style="padding:40px;margin:10px auto;    display: inline-block;width: 675px;text-align: left;">
+    <div class="panel-body" style="padding: 0;font-size: 18px;margin-bottom: 17px;">
+            Form ID : ' .$_POST["FormID"].'
+          </div>
+';
 echo 'Name:<input type="TEXT" disabled class="form-control" name="name" value= "'. $row[0].'" >' ;
 echo 'Roll Number:<input type="Number" disabled class="form-control" name="roll" value ="'. $row[1] .'">';
 echo 'Phone Number:<input type="tel" disabled class="form-control" name="phone" value ="'. $row[3] .'">';
@@ -52,6 +59,6 @@ echo '<select class="form-control" name="state" disabled>
    <option value="8" ';if($row[9]==8) echo 'selected'; echo '>Reject</option> 
    <option value="11" ';if($row[9]==11) echo 'selected'; echo '>Send Back to '.$row[0].'</option>
     </select>';
-//echo '<button type="submit" name="FormID" class="btn btn-default" value="'.$_POST['FormID'].'" formaction="./updateForm.php">Confirm</button>';
+echo '<button type="submit" name="FormID" style="margin-top : 10px" class="btn btn-primary" value="'.$_POST['FormID'].'" formaction="./viewForms.php">Go Back</button>';
 echo '</form></div></html>'; 
 ?>
